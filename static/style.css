@@ -357,11 +357,21 @@ a { text-decoration: none; color: inherit; }
   border-radius: var(--radius);
   background: var(--surface);
   box-shadow: var(--shadow-lg);
-  padding: 64px;
+  padding: 64px 48px;
   display: grid;
-  grid-template-columns: 1fr 420px;
-  gap: 56px;
+  grid-template-columns: minmax(0, 1fr) 460px;
+  gap: 64px;
   align-items: center;
+}
+
+.hero-left {
+  max-width: 480px;
+}
+
+.hero-visual {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
 }
 
 .hero-eyebrow {
