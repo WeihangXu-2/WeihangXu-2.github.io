@@ -359,7 +359,7 @@ a { text-decoration: none; color: inherit; }
   box-shadow: var(--shadow-lg);
   padding: 64px;
   display: grid;
-  grid-template-columns: 1fr 300px;
+  grid-template-columns: 1fr 720px;
   gap: 56px;
   align-items: center;
 }
