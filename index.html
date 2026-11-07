@@ -20,8 +20,12 @@
 
 <!-- Navbar -->
 <nav class="navbar">
-  <div class="nav-brand">
-    <a href="https://debquery.pythonanywhere.com">DebQuery</a>
+  <div class="nav-brand nav-collab">
+    <a href="https://debquery.pythonanywhere.com" class="nav-logo-link" aria-label="DebQuery home">
+      <img src="static/debquery-logo.png" alt="DebQuery" class="nav-logo nav-logo-dq">
+    </a>
+    <span class="nav-x" aria-hidden="true">×</span>
+    <img src="static/pantheon-logo.png" alt="Pantheon Prep" class="nav-logo nav-logo-pp">
   </div>
   <div class="nav-links">
     <a href="https://debquery.pythonanywhere.com/rankings" class="nav-link">Competitor Rankings</a>
@@ -431,6 +435,19 @@
 .feature-icon i { width: 100%; height: 100%; }
 .mini-stat-icon i { width: 1.1em; height: 1.1em; stroke: currentColor; }
 .pill-icon i { width: 1em; height: 1em; stroke: currentColor; }
+
+/* Navbar collab logos: DebQuery × Pantheon Prep */
+.nav-collab { display:flex; align-items:center; gap:14px; }
+.nav-logo-link { display:flex; align-items:center; }
+.nav-logo { display:block; width:auto; }
+.nav-logo-dq { height:26px; }
+.nav-logo-pp { height:32px; }
+.nav-x { font-size:1.1rem; font-weight:300; color:var(--ink-3); line-height:1; }
+@media (max-width: 480px) {
+  .nav-collab { gap:10px; }
+  .nav-logo-dq { height:20px; }
+  .nav-logo-pp { height:26px; }
+}
 
 /* Hamburger */
 .nav-hamburger { display:none;flex-direction:column;justify-content:center;align-items:center;gap:5px;width:40px;height:40px;border:1.5px solid var(--border-strong);border-radius:11px;background:var(--surface);cursor:pointer;padding:0;flex-shrink:0;transition:border-color 0.2s,box-shadow 0.2s; }
