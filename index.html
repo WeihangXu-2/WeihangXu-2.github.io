@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <title>Home | DebQuery</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,600;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="static/style.css">
   <link rel="icon" type="image/x-icon" href="static/legal_pad.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
@@ -52,114 +52,147 @@
 
 <div class="page">
 
-  <!-- HERO (Pantheon Prep video background, light wash keeps DebQuery's light theme) -->
-  <section class="hero hero--video">
-    <div class="hero-bg" aria-hidden="true">
-      <video
-        class="hero-bg-video"
-        autoplay
-        muted
-        loop
-        playsinline
-        preload="auto">
-        <source src="static/intro-v2.mp4" type="video/mp4">
-      </video>
-      <div class="hero-bg-scrim"></div>
-    </div>
+  <!-- HERO: full-width Pantheon Prep video, dark tint fading into the page white -->
+  <section class="hero-full">
+    <video class="hero-full-video" autoplay muted loop playsinline preload="auto" aria-hidden="true">
+      <source src="static/intro-v2.mp4" type="video/mp4">
+    </video>
+    <div class="hero-full-tint" aria-hidden="true"></div>
+    <div class="hero-full-fade" aria-hidden="true"></div>
 
-    <div class="hero-inner rainbow-card">
-      <div class="hero-left">
-        <div class="hero-eyebrow">
-          <span class="dot"></span> Public national forensics archive
-        </div>
-        <h1>DebQuery: <em>The Debate Search Engine</em></h1>
-        <p class="hero-byline">
-          by <a href="https://pantheonprep.com" class="pantheon-script" target="_blank" rel="noopener">Pantheon Prep</a>
-        </p>
-        <p class="hero-text">
-          DebQuery is a public archive built to make debate AND speech more transparent, more accessible,
-          and more informed. Search past entries, tournament appearances, and competitive records
-          across 7,000+ major tournaments — all in one place.
-        </p>
-        <div class="hero-actions">
-          <a href="#comp-section" class="btn btn-secondary">Learn More</a>
-        </div>
-      </div>
-      <div class="hero-visual">
-        <div class="laptop-mockup">
-          <video
-            class="laptop-video"
-            autoplay
-            muted
-            loop
-            playsinline
-            poster="static/hero-demo-poster.jpg">
-            <source src="static/hero-demo.mp4" type="video/mp4">
-          </video>
-          <img src="static/macbook_frame.png" class="laptop-frame-img" alt="">
-        </div>
+    <div class="hero-full-copy">
+      <div class="hero-full-eyebrow"><span class="hero-full-dot"></span> Public national forensics archive</div>
+      <h1 class="hero-full-title">DebQuery:<br><span class="hero-full-accent">The Debate Search Engine</span></h1>
+      <p class="hero-full-byline">by Pantheon Prep</p>
+      <p class="hero-full-text">
+        DebQuery is a public archive built to make debate AND speech more transparent, more accessible,
+        and more informed. Search past entries, tournament appearances, and competitive records
+        across 7,000+ major tournaments — all in one place.
+      </p>
+      <div class="hero-full-actions">
+        <a href="#comp-section" class="hero-full-btn">Learn More</a>
       </div>
     </div>
   </section>
 
   <style>
-  /* ── Video hero (light) ── */
-  .hero--video {
+  /* ── Full-width video hero ── */
+  :root { --hero-fade-to: #f5f6fa; } /* set this to your page background if you see a seam */
+  body { overflow-x: clip; }          /* stops the full-width hero from causing sideways scroll */
+
+  .hero-full {
     position: relative;
-    overflow: hidden;
-    border-radius: 28px;
-    padding: clamp(18px, 4vw, 56px);
     isolation: isolate;
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    min-height: clamp(560px, 92vh, 1000px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    text-align: center;
+    color: #fff;
   }
-  .hero-bg {
+  .hero-full-video {
     position: absolute;
     inset: 0;
-    z-index: -1;
-  }
-  .hero-bg-video {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    display: block;
+    z-index: -3;
   }
-  /* Light wash over the video so the page keeps its light theme */
-  .hero-bg-scrim {
+  /* Dark tint, strongest at the top */
+  .hero-full-tint {
     position: absolute;
     inset: 0;
-    background:
-      linear-gradient(180deg, rgba(245,246,250,0.50) 0%, rgba(245,246,250,0.78) 100%);
+    z-index: -2;
+    background: linear-gradient(180deg,
+      rgba(10,14,28,0.72) 0%,
+      rgba(10,14,28,0.55) 45%,
+      rgba(10,14,28,0.42) 75%,
+      rgba(10,14,28,0.30) 100%);
   }
-  /* Card stays light, but lets the footage read softly through */
-  .hero--video .hero-inner {
-    position: relative;
-    background-color: rgba(255,255,255,0.78);
-    -webkit-backdrop-filter: blur(14px) saturate(140%);
-    backdrop-filter: blur(14px) saturate(140%);
+  /* Gradual fade into the page white at the bottom */
+  .hero-full-fade {
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    height: 40%;
+    z-index: -1;
+    background: linear-gradient(180deg, transparent 0%, var(--hero-fade-to) 92%);
   }
 
-  /* Byline */
-  .hero-byline {
-    margin: 2px 0 18px;
-    font-size: 1.05rem;
-    color: var(--ink-3);
-    display: flex;
-    align-items: baseline;
+  .hero-full-copy {
+    max-width: 1100px;
+    padding: 120px 6% 22vh;
+    text-shadow: 0 2px 24px rgba(0,0,0,0.35);
+  }
+  .hero-full-eyebrow {
+    display: inline-flex;
+    align-items: center;
     gap: 8px;
+    padding: 6px 14px;
+    border: 1px solid rgba(255,255,255,0.35);
+    border-radius: 999px;
+    background: rgba(255,255,255,0.08);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: #fff;
+    margin-bottom: 22px;
+    text-shadow: none;
   }
-  .pantheon-script {
-    font-family: 'Dancing Script', cursive;
-    font-weight: 700;
-    font-size: 2.1em;
-    line-height: 1;
-    color: var(--ink);
+  .hero-full-dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: #fff;
+    display: inline-block;
+  }
+  .hero-full-title,
+  .hero-full-title * {
+    color: #fff;
+    background: none;
+    -webkit-text-fill-color: currentColor;
+  }
+  .hero-full-title {
+    font-size: clamp(2.6rem, 7vw, 6rem);
+    font-weight: 600;
+    line-height: 1.02;
+    letter-spacing: -0.03em;
+    margin: 0 0 14px;
+  }
+  .hero-full-title .hero-full-accent { color: rgba(255,255,255,0.72); }
+  .hero-full-byline {
+    font-size: clamp(1.05rem, 1.6vw, 1.3rem);
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: #fff;
+    margin: 0 0 22px;
+  }
+  .hero-full-text {
+    max-width: 640px;
+    margin: 0 auto 30px;
+    font-size: clamp(0.98rem, 1.3vw, 1.1rem);
+    line-height: 1.65;
+    color: rgba(255,255,255,0.88);
+  }
+  .hero-full-btn {
+    display: inline-block;
+    padding: 13px 26px;
+    border: 1.5px solid #fff;
+    color: #fff;
+    font-weight: 600;
     text-decoration: none;
-    transition: color 0.15s;
+    text-shadow: none;
+    transition: background 0.18s, color 0.18s;
   }
-  .pantheon-script:hover { color: var(--accent); }
+  .hero-full-btn:hover { background: #fff; color: #0a0e1c; }
 
   @media (max-width: 640px) {
-    .hero--video { border-radius: 20px; }
-    .pantheon-script { font-size: 1.8em; }
+    .hero-full { min-height: 88vh; }
+    .hero-full-copy { padding: 96px 20px 20vh; }
   }
   </style>
 
@@ -434,8 +467,8 @@
 document.addEventListener("DOMContentLoaded", function () {
   if (typeof lucide !== "undefined") lucide.createIcons();
 
-  // Respect reduced-motion: freeze the hero background on its poster frame
-  const heroBg = document.querySelector('.hero-bg-video');
+  // Respect reduced-motion: pause the hero background video
+  const heroBg = document.querySelector('.hero-full-video');
   if (heroBg && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     heroBg.removeAttribute('autoplay');
     heroBg.pause();
