@@ -78,7 +78,8 @@
   /* ── Full-width video hero ── */
   :root {
     --hero-fade-to: var(--bg);  /* matches the page background */
-    --hero-fade-h: 180px;       /* height of the white fade below the Learn More button */
+    --hero-space-below: 300px;  /* space between the Learn More button and the bottom of the video */
+    --hero-fade-h: 250px;       /* height of the white fade; keep it smaller than the space above */
   }
   body { overflow-x: clip; }          /* stops the full-width hero from causing sideways scroll */
 
@@ -119,14 +120,22 @@
   .hero-full-fade {
     position: absolute;
     left: 0; right: 0; bottom: 0;
-    height: var(--hero-fade-h); /* starts right under the Learn More button */
+    height: var(--hero-fade-h); /* starts a little below the Learn More button */
     z-index: -1;
-    background: linear-gradient(180deg, transparent 0%, var(--hero-fade-to) 100%);
+    /* eased stops so the video melts into white instead of hitting a hard edge */
+    background: linear-gradient(180deg,
+      rgba(255,255,255,0)    0%,
+      rgba(255,255,255,0.06) 18%,
+      rgba(255,255,255,0.18) 34%,
+      rgba(255,255,255,0.38) 50%,
+      rgba(255,255,255,0.62) 66%,
+      rgba(255,255,255,0.84) 82%,
+      var(--hero-fade-to)    100%);
   }
 
   .hero-full-copy {
     max-width: 1100px;
-    padding: 120px 6% var(--hero-fade-h);
+    padding: 120px 6% var(--hero-space-below);
     text-shadow: 0 2px 24px rgba(0,0,0,0.35);
   }
   .hero-full-title,
@@ -136,11 +145,11 @@
     -webkit-text-fill-color: currentColor;
   }
   .hero-full-title {
-    font-size: clamp(2.6rem, 7vw, 6rem);
+    font-size: clamp(2rem, 4.6vw, 3.8rem);
     font-weight: 600;
-    line-height: 1.02;
+    line-height: 1.05;
     letter-spacing: -0.03em;
-    margin: 0 0 14px;
+    margin: 0 0 12px;
   }
   .hero-full-title .hero-full-accent { color: rgba(255,255,255,0.72); }
   .hero-full-byline {
@@ -171,8 +180,8 @@
 
   @media (max-width: 640px) {
     .hero-full { min-height: 88vh; }
-    :root { --hero-fade-h: 140px; }
-    .hero-full-copy { padding: 96px 20px var(--hero-fade-h); }
+    :root { --hero-space-below: 200px; --hero-fade-h: 170px; }
+    .hero-full-copy { padding: 96px 20px var(--hero-space-below); }
   }
   </style>
 
