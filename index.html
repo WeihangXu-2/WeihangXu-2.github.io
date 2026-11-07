@@ -61,7 +61,6 @@
     <div class="hero-full-fade" aria-hidden="true"></div>
 
     <div class="hero-full-copy">
-      <div class="hero-full-eyebrow"><span class="hero-full-dot"></span> Public national forensics archive</div>
       <h1 class="hero-full-title">DebQuery:<br><span class="hero-full-accent">The Debate Search Engine</span></h1>
       <p class="hero-full-byline">by Pantheon Prep</p>
       <p class="hero-full-text">
@@ -126,29 +125,6 @@
     max-width: 1100px;
     padding: 120px 6% 22vh;
     text-shadow: 0 2px 24px rgba(0,0,0,0.35);
-  }
-  .hero-full-eyebrow {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 6px 14px;
-    border: 1px solid rgba(255,255,255,0.35);
-    border-radius: 999px;
-    background: rgba(255,255,255,0.08);
-    -webkit-backdrop-filter: blur(8px);
-    backdrop-filter: blur(8px);
-    font-size: 0.8rem;
-    font-weight: 600;
-    letter-spacing: 0.02em;
-    color: #fff;
-    margin-bottom: 22px;
-    text-shadow: none;
-  }
-  .hero-full-dot {
-    width: 7px; height: 7px;
-    border-radius: 50%;
-    background: #fff;
-    display: inline-block;
   }
   .hero-full-title,
   .hero-full-title * {
@@ -473,6 +449,22 @@ document.addEventListener("DOMContentLoaded", function () {
     heroBg.removeAttribute('autoplay');
     heroBg.pause();
   }
+
+  // Pull the hero up so the video starts right under (or behind) the navbar, with no white gap
+  function closeHeroGap() {
+    const hero = document.querySelector('.hero-full');
+    const nav = document.querySelector('.navbar');
+    if (!hero || !nav) return;
+    hero.style.marginTop = '0px';
+    const pos = getComputedStyle(nav).position;
+    const navBottom = (pos === 'fixed' || pos === 'sticky') ? 0 : nav.getBoundingClientRect().bottom + window.scrollY;
+    const heroTop = hero.getBoundingClientRect().top + window.scrollY;
+    const gap = heroTop - navBottom;
+    if (gap > 0) hero.style.marginTop = (-gap) + 'px';
+  }
+  closeHeroGap();
+  window.addEventListener('resize', closeHeroGap);
+  window.addEventListener('load', closeHeroGap);
 
   const io = new IntersectionObserver((entries) => {
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('revealed'); io.unobserve(e.target); } });
