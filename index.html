@@ -78,6 +78,129 @@
     </div>
   </section>
 
+  <!-- MOVING TO PANTHEON PREP banner -->
+  <section class="move-banner" aria-label="DebQuery is moving to Pantheon Prep">
+    <div class="move-banner-inner">
+      <div class="move-banner-logos" aria-hidden="true">
+        <img src="static/debquery-logo.png" alt="" class="move-logo move-logo-dq">
+        <span class="move-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
+        <img src="static/pantheon-logo.png" alt="" class="move-logo move-logo-pp">
+      </div>
+      <div class="move-banner-copy">
+        <div class="move-eyebrow"><span class="move-dot"></span>Announcement</div>
+        <h2 class="move-title">DebQuery is moving to Pantheon Prep.</h2>
+        <p class="move-text">Same archive, same rankings, same search, with a new home inside the Pantheon Prep student portal.</p>
+      </div>
+      <div class="move-banner-actions">
+        <a href="https://pantheonprep.com" class="move-btn" target="_blank" rel="noopener">Visit Pantheon Prep <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+      </div>
+    </div>
+  </section>
+
+  <style>
+  /* ── Moving to Pantheon Prep banner ── */
+  .move-banner {
+    position: relative;
+    max-width: 1100px;
+    margin: 8px auto 72px;
+    background: var(--surface, #fff);
+    border: 1px solid var(--border, #e0e0e0);
+    border-left: 3px solid var(--accent, #2355f5);
+    overflow: hidden;
+    box-shadow: 0 12px 40px rgba(10,14,28,0.06);
+    animation: move-rise 0.7s cubic-bezier(0.16,1,0.3,1) both;
+  }
+  /* thin animated rainbow line, same as the mobile menu */
+  .move-banner::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg,#ff2d55,#ff9500,#ffcc00,#34c759,#00c7be,#007aff,#af52de,#ff2d55);
+    background-size: 300% 100%;
+    animation: move-rainbow 6s linear infinite;
+  }
+  /* soft blue wash on the left, fading out */
+  .move-banner::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(90deg, rgba(35,85,245,0.07) 0%, rgba(35,85,245,0) 45%);
+    pointer-events: none;
+  }
+  .move-banner-inner {
+    position: relative; z-index: 1;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 32px;
+    padding: 28px 32px;
+  }
+  .move-banner-logos {
+    display: flex; align-items: center; gap: 12px;
+    padding: 14px 18px;
+    background: #edf5ff;
+    border: 1px solid rgba(35,85,245,0.18);
+  }
+  .move-logo { display: block; width: auto; }
+  .move-logo-dq { height: 22px; }
+  .move-logo-pp { height: 28px; }
+  .move-arrow { display: flex; color: var(--accent, #2355f5); }
+  .move-arrow i, .move-arrow svg { width: 18px; height: 18px; animation: move-nudge 2.2s ease-in-out infinite; }
+
+  .move-eyebrow {
+    display: inline-flex; align-items: center; gap: 7px;
+    font-size: 11px; font-weight: 600; letter-spacing: .16px; text-transform: uppercase;
+    color: var(--accent, #2355f5);
+    margin-bottom: 6px;
+  }
+  .move-dot {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: var(--accent, #2355f5);
+    animation: move-pulse 1.8s ease infinite;
+  }
+  .move-title {
+    font-size: clamp(1.15rem, 2vw, 1.45rem);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    color: var(--ink, #161616);
+    margin: 0 0 6px;
+  }
+  .move-text {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--ink-2, #525252);
+    margin: 0;
+    max-width: 520px;
+  }
+  .move-btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 13px 22px;
+    background: var(--accent, #2355f5);
+    border: 1.5px solid var(--accent, #2355f5);
+    color: #fff;
+    font-weight: 600; font-size: 0.95rem;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: background 0.18s, color 0.18s;
+  }
+  .move-btn i, .move-btn svg { width: 16px; height: 16px; }
+  .move-btn:hover { background: transparent; color: var(--accent, #2355f5); }
+
+  @keyframes move-rainbow { 0% { background-position: 0% 50%; } 100% { background-position: 300% 50%; } }
+  @keyframes move-pulse { 0%,100% { opacity: 1; transform: scale(1); } 50% { opacity: .4; transform: scale(.7); } }
+  @keyframes move-nudge { 0%,100% { transform: translateX(0); } 50% { transform: translateX(3px); } }
+  @keyframes move-rise { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+
+  @media (max-width: 860px) {
+    .move-banner-inner { grid-template-columns: 1fr; gap: 18px; padding: 24px 22px; }
+    .move-banner-logos { justify-self: start; }
+    .move-btn { justify-content: center; width: 100%; box-sizing: border-box; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .move-banner, .move-banner::before, .move-dot, .move-arrow i, .move-arrow svg { animation: none; }
+  }
+  </style>
+
+
   <style>
   /* ── Full-width video hero ── */
   :root {
